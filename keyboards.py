@@ -39,13 +39,23 @@ def commit():
 
 def accaunt():
     keyboard = types.InlineKeyboardMarkup()
-    btn_instagram = types.InlineKeyboardButton(text="instagram", callback_data="instagram")
-    btn_youtube = types.InlineKeyboardButton(text="youtube", callback_data="youtube")
-    btn_telegram = types.InlineKeyboardButton(text="telegram", callback_data="telegram")
-    btn_back = types.InlineKeyboardButton(text="Orqaga", callback_data="back")
+    btn_instagram = types.InlineKeyboardButton(text="instagram", callback_data="instagram", url="https://www.youtube.com/")
+    btn_youtube = types.InlineKeyboardButton(text="youtube", callback_data="youtube", url="https://www.youtube.com/")
+    btn_telegram = types.InlineKeyboardButton(text="telegram", callback_data="telegram", url="https://t.me/webservices01")
     keyboard.row(btn_instagram)
     keyboard.row(btn_youtube)
     keyboard.row(btn_telegram)
+    return keyboard
+
+def request_keyboards():
+    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+    btn_fronted = types.KeyboardButton(text="Fronted")
+    btn_backend = types.KeyboardButton(text="Backend")
+    btn_design = types.KeyboardButton(text="Grafik dizay")
+    btn_back = types.KeyboardButton(text="Orqaga")
+    keyboard.row(btn_fronted)
+    keyboard.row(btn_backend)
+    keyboard.row(btn_design)
     keyboard.row(btn_back)
     return keyboard
 
@@ -55,3 +65,9 @@ def generate_back():
     keyboard.row(btn_back)
     return keyboard
 
+def commit_reply():
+    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+    btn_yes = types.KeyboardButton(text="yes")
+    btn_no = types.KeyboardButton(text="no")
+    keyboard.row(btn_yes, btn_no)
+    return keyboard
