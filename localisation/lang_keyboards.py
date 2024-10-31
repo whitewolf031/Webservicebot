@@ -2,100 +2,100 @@
 about = dict(
     uz="biz haqimizda",
     ru="наша компания",
-    eng="about us",
+    en="about us",
 )
 freelancer = dict(
     uz="freelancerlik",
     ru="фриланс",
-    eng="freelance",
+    en="freelance",
 )
 zakaz = dict(
     uz="zakaz",
     ru="заказ",
-    eng="order",
+    en="order",
 )
 internet = dict(
     uz="ijtimoiy tarmoqlar",
     ru="интернет-тарифы",
-    eng="internet services",
+    en="internet services",
 )
-loyiha = dict(
+founder = dict(
     uz="loyiha asoschi haqida",
     ru="об основателе проекта",
-    eng="project founder",
+    en="project founder",
 )
-savol = dict(
+svq = dict(
     uz="savol/takliflar",
     ru="вопросы/ответы",
-    eng="questions/answers",
+    en="questions/answers",
 )
 orqaga = dict(
     uz="orqaga",
     ru="назад",
-    eng="back",
+    en="back",
 )
 contact_number = dict(
     uz="nomer ulashish",
     ru="телефонный номер",
-    eng="contact share",
+    en="contact share",
 )
 yes_commit = dict(
     uz="ha",
     ru="да",
-    eng="yes",
+    en="yes",
 )
 no_commit = dict(
     uz="yo'q",
     ru="нет",
-    eng="no",
+    en="no",
 )
 Instagram = dict(
     uz="Instagram",
     ru="Инстаграм",
-    eng="Instagram",
+    en="Instagram",
 )
 telegram = dict(
     uz="Telegram",
     ru="Телеграм",
-    eng="Telegram",
+    en="Telegram",
 )
 youtube = dict(
     uz="YouTube",
     ru="YouTube",
-    eng="YouTube",
+    en="YouTube",
 )
 fronted = dict(
     uz="fronted",
     ru="фронтенд",
-    eng="fronted",
+    en="fronted",
 )
 backend = dict(
     uz="backend",
     ru="бэкенд",
-    eng="backend",
+    en="backend",
 )
 design = dict(
-    uz="grafik dizay",
+    uz="grafik dizayn",
     ru="графический дизайн",
-    eng="graphic design",
+    en="graphic design",
 )
 other = dict(
     uz="boshqa",
     ru="другое",
-    eng="other",
+    en="other",
 )
 permissions = dict(
     uz="Sizga dostup berilmadi.",
     ru="Вам не дали доступ.",
-    eng="You were not given access.",
+    en="You were not given access.",
 )
 access_granted = dict(
     uz="Sizga dostup berildi.",
     ru="Вам дали доступ.",
-    eng="You were given access.",
+    en="You were given access.",
 )
 contacted = dict(
     uz="Sizga aloqaga chiqishadi.",
-    ru= "С вами свяжутся.",
-    eng="You will be contacted."
+    ru="С вами свяжутся.",
+    en="You will be contacted."
 )

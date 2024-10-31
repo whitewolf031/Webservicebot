@@ -1,11 +1,11 @@
 star_message = dict(
     uz="Assalomu aleykum web xizmatlar botimizga xush kelibsiz.",
-    eng="Hello, welcome to our web services bot.",
+    en="Hello, welcome to our web services bot.",
     ru="Приветствуем вас, нашему веб-службам бот."
 )
 category = dict(
     uz="Bo'limlardan birini tanlang",
-    eng="Choose a category",
+    en="Choose a category",
     ru="Выберите категорию"
 )
 about_us = dict(
@@ -30,7 +30,7 @@ about_us = dict(
         
         "Сотрудничая с нами, вы получаете надежного технологического партнера и добиваетесь успеха в цифровом мире.",
 
-    eng="'WebServices' – a modern platform offering IT services. We support innovative technologies to help our clients achieve their business goals."
+    en="'WebServices' – a modern platform offering IT services. We support innovative technologies to help our clients achieve their business goals."
         "Our team of qualified specialists ensures a personalized approach to every project."
         
         "Our Services:"
@@ -43,12 +43,12 @@ about_us = dict(
 )
 choose = dict(
     uz="Tanlang:",
-    eng="Choose:",
+    en="Choose:",
     ru="Выбрать:"
 )
 text = dict(
     uz="bizning ijtimoiy tarmoq saxifalari",
-    eng="our main features",
+    en="our main features",
     ru="наши основные функции"
 )
 about_me = dict(
@@ -99,7 +99,7 @@ about_me = dict(
         "Email: anvar.karimov@example.com\n"
         "Телефон: +998 93 110 79 13",
 
-    eng="About the Founder\n\n"
+    en="About the Founder\n\n"
 
         "Founder’s Name: Ergashev Sardorbek\n"
         "Year of Birth: 2006\n\n"
@@ -125,131 +125,131 @@ about_me = dict(
 )
 name = dict(
     uz="Ismingizni kiriting",
-    eng="Enter your name",
+    en="Enter your name",
     ru="Введите ваше имя"
 )
 back_menu = dict(
     uz="Orqaga qaytdingiz. Bo'limni tanlang:",
-    eng="Go back. Choose a category:",
+    en="Go back. Choose a category:",
     ru="Вернуться назад. Выберите категорию:"
 )
 email = dict(
     uz="Email manzilini kiriting",
-    eng="Enter your email address",
+    en="Enter your email address",
     ru="Введите ваш email адрес"
 )
 proffesion = dict(
     uz="Yonalishingiz",
-    eng="Your profession",
+    en="Your profession",
     ru="Ваш профессия"
 )
 mistake = dict(
     uz="Elektron pochtangiz xato",
-    eng="Invalid email address",
+    en="Invalid email address",
     ru="Неверный адрес электронной почты"
 )
 number = dict(
     uz="Telefon raqamingizni kiritng",
-    eng="Enter your phone number",
+    en="Enter your phone number",
     ru="Введите ваш номер телефона"
 )
 confirm_lang = dict(
     uz="Tasdiqlaysizmi",
-    eng="Confirm",
+    en="Confirm",
     ru="Подтвердить"
 )
 confirm_email = dict(
     uz="Elektron pochtangiz:",
-    eng="Email:",
-    ru="Email:"
+    en="Email:",
+    ru="электронная почта:"
 )
 profession = dict(
     uz="Yo'nalishingiz:",
-    eng="Profession:",
+    en="Profession:",
     ru="Профессия:"
 )
 phone_number = dict(
     uz="Telefon raqamingiz:",
-    eng="Phone number:",
+    en="Phone number:",
     ru="Номер телефона:"
 )
 update = dict(
     uz="Ma'lumotlar yangilandi",
-    eng="Data updated",
+    en="Data updated",
     ru="Данные изменены"
 )
 take_info = dict(
     uz="Ma'lumot qabul qilindi",
-    eng="Information received",
+    en="Information received",
     ru="Информация получена"
 )
 new_worker = dict(
     uz="Yangi freelancer:",
-    eng="New freelancer:",
+    en="New freelancer:",
     ru="Новый фрилансер:"
 )
 your_name = dict(
     uz="Ismi:",
-    eng="Name:",
+    en="Name:",
     ru="Имя:"
 )
 your_email = dict(
     uz="Elektron pochtasi:",
-    eng="Email:",
+    en="Email:",
     ru="Email:"
 )
 your_profession = dict(
     uz="Yonalishingiz:",
-    eng="Profession:",
+    en="Profession:",
     ru="Профессия:"
 )
 questions = dict(
     uz="savol yo taklifingizni yuboring",
-    eng="Ask your question",
+    en="Ask your question",
     ru="Задайте вопрос"
 )
 question = dict(
     uz="Savol/taklifingiz:",
-    eng="Question/suggestion:",
+    en="Question/suggestion:",
     ru="Вопрос/предложение:"
 )
 send = dict(
     uz="Jo'natildi:",
-    eng="Sent:",
+    en="Sent:",
     ru="Отправлено:"
 )
 send_email = dict(
     uz="Elektron pochtasi:",
-    eng="Email:",
+    en="Email:",
     ru="Email:"
 )
 savol = dict(
     uz="Savoli:",
-    eng="Question:",
+    en="Question:",
     ru="Вопрос:"
 )
 order = dict(
     uz="Qanday turdago zakaz (yozing)",
-    eng="What kind of order (write)",
+    en="What kind of order (write)",
     ru="Какой вид заказа (писать)"
 )
 new_order = dict(
     uz="Yangi zakaz:",
-    eng="New order:",
+    en="New order:",
     ru="Новый заказ:"
 )
 orderi = dict(
     uz="zakazi",
-    eng="order",
+    en="order",
     ru="заказ"
 )
 your_phone = dict(
     uz="Telefon raqami:",
-    eng="Phone number:",
+    en="Phone number:",
     ru="Номер телефона:"
 )
 gruop = dict(
     uz="Bizning chatimiz https://t.me/+BVLFpTQbdx82MWYy",
-    eng="Our chat: https://t.me/+BVLFpTQbdx82MWYy",
+    en="Our chat: https://t.me/+BVLFpTQbdx82MWYy",
     ru="Наш чат: https://t.me/+BVLFpTQbdx82MWYy"
 )

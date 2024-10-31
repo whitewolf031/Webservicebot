@@ -24,15 +24,15 @@ def start(message):
     lang = user_langs.get(chat_id, "uz")
     bot.send_message(chat_id, star_message[lang], reply_markup=generate_language())
 
-@bot.callback_query_handler(func=lambda call: call.data in ["uz","eng","ru"])
+@bot.callback_query_handler(func=lambda call: call.data in ["uz","en","ru"])
 def Language(call):
     chat_id = call.message.chat.id
     lang = user_langs.get(chat_id, "uz")
     if call.data == "uz":
         lang = "uz"
 
-    elif call.data == "eng":
-        lang = "eng"
+    elif call.data == "en":
+        lang = "en"
 
     elif call.data == "ru":
         lang = "ru"
@@ -59,7 +59,7 @@ def menu(message):
             bot.send_message(chat_id, category[lang], reply_markup=request_keyboards(lang))
             bot.register_next_step_handler(message, freelance)
         else:
-            username = message.from_user.username  # Foydalanuvchi nomini olish
+            username = message.from_user.id  # Foydalanuvchi nomini olish
             bot.send_message(chat_id, contacted[lang])
             bot.send_message(owner_id, f"Bizda yangi freelancer bor {username} unga dostup berasizmi",
                              reply_markup=owner_permission())
@@ -75,13 +75,15 @@ def menu(message):
         time.sleep(2)
         bot.register_next_step_handler(message, menu)
 
-    elif message.text == loyiha[lang]:
+    elif message.text == founder[lang]:
         bot.send_photo(chat_id, photo2, about_me[lang])
         bot.send_message(chat_id, category[lang], reply_markup=menu_keyboards(lang))
         time.sleep(2)
         bot.register_next_step_handler(message, menu)
 
-    elif message.text == savol[lang]:
+
+
+    elif message.text == svq[lang]:
         bot.send_message(chat_id, name[lang])
         bot.register_next_step_handler(message, user_email)
 
@@ -92,7 +94,7 @@ def menu(message):
 def permission(message):
     chat_id = message.chat.id
     lang = user_langs.get(chat_id, "uz")
-    if update.message.from_user.id == owner_id:
+    if message.from_user.id == owner_id and message.text == "yes":
         bot.send_message(chat_id, access_granted[lang])
         bot.register_next_step_handler(message, freelance)
     else:
@@ -102,6 +104,7 @@ def permission(message):
 def freelance(message):
     chat_id = message.chat.id
     lang = user_langs.get(chat_id, "uz")
+
     if message.text == fronted[lang]:
         bot.send_message(chat_id, name[lang])
         bot.register_next_step_handler(message, freelancer_user_email)
@@ -186,12 +189,13 @@ def send_group_message(message, fio, quest, email):
 def callback_handler(call):
     chat_id = call.message.chat.id
     lang = user_langs.get(chat_id, "uz")
+
     fio = employees_details['fio']
     email = employees_details['email']
     quest = employees_details['quest']
     phone = employees_details['phone']
 
-    if call.data == yes_commit[lang]:
+    if call.data == "yes":
         employee_db = Employees_db()  # Employees_db sinfidin bir nusxa yaratamiz
         employee_db.create_table()  # Jadvalni yaratamiz
 
@@ -201,21 +205,19 @@ def callback_handler(call):
         else:
             employee_db.insert_data(chat_id, fio, email, quest, phone)  # Ma'lumotlarni kiritamiz
             bot.send_message(chat_id, take_info[lang])
-
-        # Har holda, yangi ma'lumotni kanalga yuboramiz
-        bot.send_message(canal_id, f'{new_worker[lang]}\n'
-                                   f"{your_name[lang]} {fio}\n"
-                                   f"{your_email[lang]} {email}\n"
-                                   f"{your_profession[lang]} {quest}\n"
-                                   f"{phone_number[lang]} {phone}")
-        bot.send_message(chat_id, gruop[lang])
+            bot.send_message(canal_id, f'{new_worker[lang]}\n'
+                                       f"{your_name[lang]} {fio}\n"
+                                       f"{your_email[lang]} {email}\n"
+                                       f"{your_profession[lang]} {quest}\n"
+                                       f"{phone_number[lang]} {phone}")
+            bot.send_message(chat_id, gruop[lang])
 
         time.sleep(1)
         bot.send_message(chat_id, category[lang], reply_markup=menu_keyboards(lang))
         bot.register_next_step_handler(call.message, menu)
 
 
-    elif call.data == no_commit[lang]:
+    elif call.data == "no":
         bot.send_message(chat_id, category[lang], reply_markup=request_keyboards(lang))
         bot.register_next_step_handler(call.message, freelance)
 
@@ -243,7 +245,7 @@ def user_question(message, fio):
         bot.send_message(chat_id, mistake[lang])
         time.sleep(1)
         bot.send_message(chat_id, email[lang])
-        bot.register_next_step_handler(message, user_question, fio)
+        bot.register_next_step_handler(message, user_question)
 
 def send_group_message2(message, fio, email):
     quest = message.text
@@ -269,10 +271,7 @@ def message_commit(message):
     quest = personal_details['quest']
 
     if message.text == yes_commit[lang]:
-        # Foydalanuvchiga xabar yuborish
         bot.send_message(chat_id, take_info[lang])
-
-        # Ma'lumotlarni Telegram guruhiga yuborish
         bot.send_message(canal_id, f"{send[lang]} {fio} tomonidan\n"
                                    f"{send_email[lang]} {email}\n"
                                    f"{savol[lang]} {quest}\n")
@@ -282,8 +281,9 @@ def message_commit(message):
         bot.register_next_step_handler(message, menu)
 
     elif message.text == no_commit[lang]:
-        bot.send_message(chat_id, "Ismingizni kiriting:")
-        bot.register_next_step_handler(message, user_email)
+        bot.send_message(chat_id, name[lang])
+        bot.send_message(chat_id, category[lang], reply_markup=menu_keyboards(lang))
+        bot.register_next_step_handler(message, menu)
 
 #--------------------------------------Zakas--------------------------------------
 
