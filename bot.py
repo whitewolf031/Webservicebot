@@ -81,8 +81,6 @@ def menu(message):
         time.sleep(2)
         bot.register_next_step_handler(message, menu)
 
-
-
     elif message.text == svq[lang]:
         bot.send_message(chat_id, name[lang])
         bot.register_next_step_handler(message, user_email)
