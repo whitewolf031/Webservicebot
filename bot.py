@@ -59,7 +59,7 @@ def menu(message):
             bot.send_message(chat_id, category[lang], reply_markup=request_keyboards(lang))
             bot.register_next_step_handler(message, freelance)
         else:
-            username = message.from_user.id  # Foydalanuvchi nomini olish
+            username = message.from_user.username  # Foydalanuvchi nomini olish
             bot.send_message(chat_id, contacted[lang])
             bot.send_message(owner_id, f"Bizda yangi freelancer bor {username} unga dostup berasizmi",
                              reply_markup=owner_permission())
