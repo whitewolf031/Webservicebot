@@ -31,13 +31,13 @@ about_us = dict(
         "Сотрудничая с нами, вы получаете надежного технологического партнера и добиваетесь успеха в цифровом мире.",
 
     en="'WebServices' – a modern platform offering IT services. We support innovative technologies to help our clients achieve their business goals."
-        "Our team of qualified specialists ensures a personalized approach to every project."
+        "Our team of qualified specialists ensures a personalized approach to every project.\n\n"
         
-        "Our Services:"
-        "Creating web and mobile applications"
-        "Backend and frontend development"
-        "Technical support and maintenance"
-        "Digital transformation and IT consulting"
+        "Our Services:\n"
+        "Creating web and mobile applications\n"
+        "Backend and frontend development\n"
+        "Technical support and maintenance\n"
+        "Digital transformation and IT consulting\n\n"
         
         "By partnering with us, you gain a reliable technology partner and achieve success in the digital world."
 )
@@ -73,7 +73,7 @@ about_me = dict(
                         f"Kitob o'qish\n\n"
                                   
                         f"Aloqa:\n"
-                        f"Email: anvar.karimov@example.com\n"
+                        f"Email: futuretech539@gmail.com\n"
                         f"Telefon: +998 93 110 79 13",
     ru="О Основателе\n\n"
 
@@ -96,7 +96,7 @@ about_me = dict(
         "Чтение книг\n\n"
         
         "Контакты:\n"
-        "Email: anvar.karimov@example.com\n"
+        "Email: futuretech539@gmail.com\n"
         "Телефон: +998 93 110 79 13",
 
     en="About the Founder\n\n"
@@ -120,7 +120,7 @@ about_me = dict(
         "Reading books\n\n"
         
         "Contact:\n"
-        "Email: anvar.karimov@example.com\n"
+        "Email: futuretech539@gmail.com\n"
         "Phone: +998 93 110 79 13"
 )
 name = dict(
