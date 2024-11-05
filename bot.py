@@ -97,7 +97,7 @@ def permission(message):
         bot.register_next_step_handler(message, freelance)
     else:
         bot.send_message(chat_id, permissions[lang])
-        bot.register_next_step_handler(message, back)
+        bot.send_message(chat_id, category[lang], reply_markup=menu_keyboards(lang))
 
 def freelance(message):
     chat_id = message.chat.id

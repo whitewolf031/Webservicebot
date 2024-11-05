@@ -9,7 +9,7 @@ category = dict(
     ru="Выберите категорию"
 )
 about_us = dict(
-    uz="Biz haqimizda"
+    uz="Biz haqimizda\n\n"
             "'WebServices' – zamonaviy IT xizmatlari taqdim etuvchi platforma. Biz innovatsion texnologiyalarni qo'llab-quvvatlash orqali mijozlarimizning biznes maqsadlariga erishishiga yordam beramiz."
                                                                                                                   "Malakali mutaxassislardan iborat jamoamiz har bir loyiha uchun individual yondashuvni ta'minlaydi."
             "Xizmatlarimiz:\n"
