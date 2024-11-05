@@ -83,7 +83,7 @@ def commit_reply(lang):
 
 def owner_permission():
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
-    btn_yes = types.KeyboardButton(text="Yes")
+    btn_yes = types.KeyboardButton(text="yes")
     btn_no = types.KeyboardButton(text="no")
     keyboard.row(btn_yes, btn_no)
     return keyboard
