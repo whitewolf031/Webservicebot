@@ -61,7 +61,7 @@ def menu(message):
         else:
             username = message.from_user.username  # Foydalanuvchi nomini olish
             bot.send_message(chat_id, contacted[lang])
-            bot.send_message(owner_id, f"Bizda yangi freelancer bor {username} unga dostup berasizmi",
+            bot.send_message(owner_id, f"Bizda yangi freelancer bor @{username} unga dostup berasizmi",
                              reply_markup=owner_permission())
             bot.register_next_step_handler(message, permission)
 
