@@ -45,8 +45,8 @@ def Language(call):
 def menu(message):
     chat_id = message.chat.id
     lang = user_langs.get(chat_id, "uz")
-    photo = open("media/img1.jpg", "rb")
-    photo2 = open("media/img2.jpg", "rb")
+    photo = open("Media/img1.jpg", "rb")
+    photo2 = open("Media/img2.jpg", "rb")
     if message.text == about[lang]:
         bot.send_photo(chat_id, photo, caption=about_us[lang],
         parse_mode="HTML", reply_markup=generate_back(lang))
