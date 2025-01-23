@@ -133,7 +133,7 @@ back_menu = dict(
     en="Go back. Choose a category:",
     ru="Вернуться назад. Выберите категорию:"
 )
-email = dict(
+users_email = dict(
     uz="Email manzilini kiriting",
     en="Enter your email address",
     ru="Введите ваш email адрес"
