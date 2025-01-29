@@ -123,6 +123,78 @@ about_me = dict(
         "Email: futuretech539@gmail.com\n"
         "Phone: +998 93 110 79 13"
 )
+
+about_team1 = dict(
+    uz="Jamoa a’zosi haqida\n\n"
+       
+    "Ismi: Kim Artur\n"
+    "Tug'ilgan Yili: 2006\n"
+    "Ta'lim: Olmaliq Shahar IT park Grafik dizayner\n\n"
+    
+    "Tajribasi:\n"
+    "2023-2023- by june- IT Park, Grafik dizayner\n" 
+    "2024-2025 - Friliance online web-design, grafik design\n\n"
+    
+    "Loyiha Haqida:\n"
+    "Kim Artur 'WebServices' IT jamoa a’zosi bo'lib, u internetda xizmat ko'rsatish va texnologiyalarni rivojlantirish maqsadida tashkil etilgan. "
+       "Loyihaning asosiy maqsadi, mijozlarga eng so'nggi texnologiyalar va xizmatlar orqali o'z ehtiyojlarini qondirishdir.\n\n"
+    
+    "Qiziqishlari:\n"
+    "Sun'iy intellekt\n"
+    "Sayohat qilish\n"
+    "Kiber sportga qiziqish\n\n"
+    
+    "Aloqa:\n"
+    "Email: futuretech539@gmail.com\n"
+    "Telefon: +998 33 101 28 22",
+
+    en="About the Team Member\n\n"
+
+    "Name: Kim Artur\n"
+    "Date of Birth: 2006\n"
+    "Education: Olmaliq City IT Park, Graphic Designer\n\n"
+    
+    "Experience:\n"
+    "2023-2023 (by June) – IT Park, Graphic Designer\n"
+    "2024-2025 – Freelance Online Web Design, Graphic Design\n\n"
+    
+    "About the Project:\n"
+    "Kim Artur is a member of the 'WebServices' IT team, which was established to provide internet services and develop technologies. "
+    "The main goal of the project is to meet customer needs through the latest technologies and services.\n\n"
+    
+    "Interests:\n"
+    "Artificial Intelligence\n"
+    "Traveling\n"
+    "Interest in eSports\n\n"
+    
+    "Contact:\n"
+    "Email: futuretech539@gmail.com\n"
+    "Phone: +998 33 101 28 22",
+
+    ru="О члене команды\n\n"
+
+    "Имя: Ким Артур\n"
+    "Год рождения: 2006\n"
+    "Образование: IT-парк города Алмалык, графический дизайнер\n\n"
+    
+    "Опыт работы:\n"
+    "2023-2023 (до июня) – IT-парк, графический дизайнер\n"
+    "2024-2025 – Фриланс, онлайн веб-дизайн, графический дизайн\n\n"
+    
+    "О проекте:\n"
+    "Ким Артур является членом IT-команды 'WebServices', созданной для предоставления интернет-услуг и развития технологий. "
+    "Основная цель проекта – удовлетворение потребностей клиентов с помощью новейших технологий и сервисов.\n\n"
+    
+    "Интересы:\n"
+    "Искусственный интеллект\n"
+    "Путешествия\n"
+    "Интерес к киберспорту\n\n"
+    
+    "Контакты:\n"
+    "Email: futuretech539@gmail.com\n"
+    "Телефон: +998 33 101 28 22"
+)
+
 name = dict(
     uz="Ismingizni kiriting",
     en="Enter your name",

@@ -63,6 +63,19 @@ youtube = dict(
     ru="🎥 YouTube",
     en="🎥 YouTube",
 )
+
+update_info = dict(
+    uz="Ma'lumotlar yangilash",
+    en="Update date",
+    ru="Обновление данных"
+)
+
+create = dict(
+    uz="Freelancerlikni boshlash",
+    en="Start freelance",
+    ru="Начать фриланс"
+)
+
 fronted = dict(
     uz="🎨 fronted",
     ru="🎨 фронтенд",

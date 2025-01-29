@@ -1,5 +1,7 @@
 import os
 from telebot import types
+from telebot.types import InlineKeyboardButton, InlineKeyboardMarkup
+
 from localisation.lang_keyboards import *
 
 instagram_link = os.getenv("INSTAGRAM_URL")
@@ -10,11 +12,11 @@ telegram_link = os.getenv("TELEGRAM_URL")
 def admin_panel_markup():
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     btn_news = types.KeyboardButton("Yangilik qo'shish")
-    btn_look = types.KeyboardButton("Bo'limlarni ko'rish")
     btn_admins = types.KeyboardButton("Adminlar ro'yxati")
     btn_add_admin = types.KeyboardButton("Admin qo'shish")
-    keyboard.row(btn_news, btn_look)
-    keyboard.row(btn_admins, btn_add_admin)
+    btn_orqaga = types.KeyboardButton("orqaga")
+    keyboard.row(btn_news, btn_admins, btn_add_admin)
+    keyboard.row(btn_orqaga)
     return keyboard
 
 def generate_language():
@@ -65,6 +67,15 @@ def accaunt(lang, instagram_link, youtube_link, telegram_link):
     keyboard.row(btn_back)
     return keyboard
 
+def update_or_create(lang):
+    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+    btn_update = types.KeyboardButton(text=update_info[lang])
+    btn_create = types.KeyboardButton(text=create[lang])
+    btn_nazad = types.KeyboardButton(text=orqaga[lang])
+    keyboard.row(btn_update, btn_create)
+    keyboard.row(btn_nazad)
+    return keyboard
+
 
 def request_keyboards(lang):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
@@ -93,19 +104,29 @@ def commit_reply(lang):
     keyboard.row(btn_yes, btn_no)
     return keyboard
 
-def owner_permission():
+def create_user_date():
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
-    btn_yes = types.KeyboardButton(text="yes")
-    btn_no = types.KeyboardButton(text="no")
+    btn_yes = types.KeyboardButton(text="Ha")
+    btn_no = types.KeyboardButton(text="Yo'q")
     keyboard.row(btn_yes, btn_no)
     return keyboard
 
-def perehodlar():
-    keyboard = types.InlineKeyboardMarkup()
-    btn_orqaga = types.InlineKeyboardButton(text="⬅️", callback_data="strelka")
-    btn_1 = types.InlineKeyboardButton(text="1", callback_data="1")
-    btn_2 = types.InlineKeyboardButton(text="2", callback_data="2")
-    btn_3 = types.InlineKeyboardButton(text="3", callback_data="3")
-    btn_oldinga = types.InlineKeyboardButton(text="➡️", callback_data="orqaga")
-    keyboard.row(btn_orqaga, btn_1, btn_2, btn_3, btn_oldinga)
+# def perehodlar():
+#     keyboard = types.InlineKeyboardMarkup()
+#     btn_orqaga = types.InlineKeyboardButton(text="⬅️", callback_data="strelka")
+#     btn_1 = types.InlineKeyboardButton(text="1", callback_data="1")
+#     btn_2 = types.InlineKeyboardButton(text="2", callback_data="2")
+#     btn_3 = types.InlineKeyboardButton(text="3", callback_data="3")
+#     btn_oldinga = types.InlineKeyboardButton(text="➡️", callback_data="orqaga")
+#     btn_menuga = types.InlineKeyboardButton(text="orqaga", callback_data="qaytish")
+#     keyboard.row(btn_orqaga, btn_1, btn_2, btn_3, btn_oldinga)
+#     keyboard.row(btn_menuga)
+#     return keyboard
+
+def owner_permission():
+    keyboard = InlineKeyboardMarkup()
+    btn_yes = InlineKeyboardButton(text="Albatda", callback_data="Albatda")
+    btn_no = InlineKeyboardButton(text="To'g'ri kelmaydi", callback_data="To'g'ri kelmaydi")
+    keyboard.row(btn_yes, btn_no)
     return keyboard
+
