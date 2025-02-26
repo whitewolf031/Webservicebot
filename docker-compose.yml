@@ -11,3 +11,5 @@ services:
       - TELEGRAM_TOKEN=your_telegram_bot_token
     volumes:
       - .:/app
+    working_dir: /app
+    command: ["python", "bot.py"]  # Botni ishga tushirish buyrug'i

@@ -1,4 +1,6 @@
 import time
+# import os
+import json
 from telebot import TeleBot
 from db.employees_db import *
 from db.user_id import *
@@ -35,88 +37,164 @@ def testing(message):
 
 #---------------------------------Admin panel--------------------------------------
 # Adminlarning ID ro'yxati
-admin_id = list(map(int, os.getenv("ADMIN_ID").split(',')))
+ADMIN_FILE = "admin_list.json"
 
+
+# 📌 Adminlar ro‘yxatini JSON fayldan yuklash
+def load_admins():
+    try:
+        with open(ADMIN_FILE, "r") as file:
+            data = json.load(file)
+            return data.get("admins", [])
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []
+
+
+# 📌 Adminlar ro‘yxatini JSON faylga yozish
+def save_admins(admins):
+    with open(ADMIN_FILE, "w") as file:
+        json.dump({"admins": admins}, file, indent=4)
+
+
+# 📌 Admin qo‘shish
+def add_admin(admin_id, username):
+    admins = load_admins()
+
+    # Agar admin allaqachon bor bo‘lsa, qo‘shmaymiz
+    for admin in admins:
+        if admin["id"] == admin_id:
+            return False
+
+    admins.append({"id": admin_id, "username": username})
+    save_admins(admins)
+    return True
+
+
+# 📌 Adminni o‘chirish
+def remove_admin(admin_id):
+    admins = load_admins()
+    updated_admins = [admin for admin in admins if admin["id"] != admin_id]
+
+    if len(updated_admins) == len(admins):
+        return False
+
+    save_admins(updated_admins)
+    return True
+
+
+# 📌 Foydalanuvchi admin ekanligini tekshirish
+def is_admin(user_id):
+    return any(admin["id"] == user_id for admin in load_admins())
+
+# 📌 Adminlarni ko‘rish
 @bot.message_handler(commands=["admin"])
 def admin(message):
     chat_id = message.chat.id
-    if chat_id in admin_id:
+    if is_admin(chat_id):
         bot.send_message(chat_id, "Admin panelga xush kelibsiz!", reply_markup=admin_panel_markup())
         bot.register_next_step_handler(message, handle_admin_panel)
     else:
-        bot.send_message(chat_id, "Siz admin emassiz!")
+        bot.send_message(chat_id, "⛔ Siz admin emassiz!")
 
-@bot.message_handler(func=lambda message: message.chat.id in admin_id)
+
+# 📌 Admin panel ishlashi
+@bot.message_handler(func=lambda message: is_admin(message.chat.id))
 def handle_admin_panel(message):
     chat_id = message.chat.id
-    lang = user_langs.get(chat_id, "uz")
 
     if message.text == "Yangilik qo'shish":
         create_news = bot.send_message(chat_id, "Yangilikni yuboring (matn yoki rasm bilan)")
         bot.register_next_step_handler(create_news, send_announcement)
 
     elif message.text == "Adminlar ro'yxati":
-        bot.send_message(chat_id, f"👥 Adminlar ro'yxati:\n" + "\n".join(map(str, admin_id)), reply_markup=generate_back(lang))
-        bot.register_next_step_handler(message, admin_back)
+        admins = load_admins()
+        if admins:
+            admin_list = "\n".join([f"🆔 {admin['id']} - @{admin['username']}" for admin in admins])
+            bot.send_message(chat_id, f"👥 Adminlar ro'yxati:\n{admin_list}")
+        else:
+            bot.send_message(chat_id, "👥 Hozircha adminlar yo‘q.")
+        bot.register_next_step_handler(message, handle_admin_panel)
 
     elif message.text == "Admin qo'shish":
-        bot.send_message(chat_id, "Bu bo'lim hozircha ishlamayapdi",reply_markup=generate_back(lang))
-        bot.register_next_step_handler(message, admin_back)
+        bot.send_message(chat_id, "bu bo'lim hozircha ishlamaydi")
+        bot.send_message(chat_id, "Bo'limlardan birini tanlang")
+        bot.register_next_step_handler(message, handle_admin_panel)
+        # bot.send_message(chat_id, "Foydalanuvchi ID sini va username ni kiriting: (masalan: 123456789 admin1)")
+        # bot.register_next_step_handler(message, add_admin_handler)
+
+    elif message.text == "Admin o'chirish":
+        bot.send_message(chat_id, "Bu bo'lim hozircha ishlamayapdi")
+        bot.send_message(chat_id, "Bo'limlardan birini tanlang")
+        bot.register_next_step_handler(message, handle_admin_panel)
 
     elif message.text == "orqaga":
-        bot.send_message(chat_id, "bo'limlardan birini tanlang", reply_markup=menu_keyboards(lang))
-        bot.register_next_step_handler(message, menu)
+        bot.send_message(chat_id, "Bo‘limlardan birini tanlang", reply_markup=admin_panel_markup())
+        bot.register_next_step_handler(message, handle_admin_panel)
 
 
+# 📌 Admin qo‘shish (Bot orqali)
+@bot.message_handler(commands=["add_admin"])
+def add_admin_handler(message):
+    chat_id = message.chat.id
+    if is_admin(chat_id):
+        try:
+            _, new_admin_id, username = message.text.split()
+            new_admin_id = int(new_admin_id)
+            if add_admin(new_admin_id, username):
+                bot.send_message(chat_id, f"✅ @{username} (ID: {new_admin_id}) admin qilib qo‘shildi.")
+            else:
+                bot.send_message(chat_id, f"⚠️ @{username} allaqachon admin.")
+        except:
+            bot.send_message(chat_id, "❌ Xato! To‘g‘ri format: /add_admin 123456789 admin1")
+    else:
+        bot.send_message(chat_id, "⛔ Sizda bunday huquq yo‘q!")
+
+
+# 📌 Adminni o‘chirish
+@bot.message_handler(commands=["remove_admin"])
+def remove_admin_handler(message):
+    chat_id = message.chat.id
+    if is_admin(chat_id):
+        try:
+            _, admin_id_to_remove = message.text.split()
+            admin_id_to_remove = int(admin_id_to_remove)
+            if remove_admin(admin_id_to_remove):
+                bot.send_message(chat_id, f"✅ Admin (ID: {admin_id_to_remove}) o‘chirildi.")
+            else:
+                bot.send_message(chat_id, "⚠️ Bunday admin topilmadi.")
+        except:
+            bot.send_message(chat_id, "❌ Xato! To‘g‘ri format: /remove_admin 123456789")
+    else:
+        bot.send_message(chat_id, "⛔ Sizda bunday huquq yo‘q!")
+
+
+# 📌 Yangilik yuborish
 @bot.message_handler(content_types=["photo", "text"])
 def send_announcement(message):
     chat_id = message.chat.id
+    if is_admin(chat_id):
+        users = db.get_all_users()
 
-    if chat_id in admin_id:  # Faqat adminlarga ruxsat
         if message.content_type == "photo":
-            # Rasm va captionni olish
             photo_id = message.photo[-1].file_id
             caption = message.caption if message.caption else "📢 Yangilik!"
-
-            # Foydalanuvchilarga yuborish
-            users = db.get_all_users()
-
-            if users:
-                for user_id in users:
-                    try:
-                        bot.send_photo(user_id, photo_id, caption=caption)
-                    except Exception as e:
-                        print(f"Xatolik {user_id} ga yuborishda: {e}")
-                bot.send_message(chat_id, "📸 Rasmli yangilik muvaffaqiyatli yuborildi!")
-                bot.send_message(chat_id, "bo'limlardan birini tanlang", reply_markup=admin_panel_markup())
-            else:
-                bot.send_message(chat_id, "Hozircha foydalanuvchilar ro'yxati bo'sh.")
-
+            for user_id in users:
+                try:
+                    bot.send_photo(user_id, photo_id, caption=caption)
+                except Exception as e:
+                    print(f"Xatolik {user_id} ga yuborishda: {e}")
+            bot.send_message(chat_id, "📸 Rasmli yangilik muvaffaqiyatli yuborildi!")
+            
         elif message.content_type == "text":
-            # Textli yangilikni olish
             news_text = message.text
-
-            # Foydalanuvchilarga yuborish
-            users = db.get_all_users()
-
-            if users:
-                for user_id in users:
-                    try:
-                        bot.send_message(user_id, news_text)
-                    except Exception as e:
-                        print(f"Xatolik {user_id} ga yuborishda: {e}")
-                bot.send_message(chat_id, "✉️ Textli yangilik muvaffaqiyatli yuborildi!")
-                bot.send_message(chat_id, "bo'limlardan birini tanlang", reply_markup=admin_panel_markup())
-            else:
-                bot.send_message(chat_id, "Hozircha foydalanuvchilar ro'yxati bo'sh.")
+            for user_id in users:
+                try:
+                    bot.send_message(user_id, news_text)
+                except Exception as e:
+                    print(f"Xatolik {user_id} ga yuborishda: {e}")
+            bot.send_message(chat_id, "✉️ Textli yangilik muvaffaqiyatli yuborildi!")
     else:
         bot.send_message(chat_id, "⛔ Siz admin emassiz, yangilik yuborolmaysiz!")
-
-def admin_back(message):
-    chat_id = message.chat.id
-
-    bot.send_message(chat_id, "Bo'limlardan birini tanlang", reply_markup=admin_panel_markup())
-    bot.register_next_step_handler(message, handle_admin_panel)
 
 #---------------------------------start--------------------------------------------
 @bot.message_handler(commands=["start"])

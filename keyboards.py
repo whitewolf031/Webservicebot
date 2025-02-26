@@ -14,8 +14,10 @@ def admin_panel_markup():
     btn_news = types.KeyboardButton("Yangilik qo'shish")
     btn_admins = types.KeyboardButton("Adminlar ro'yxati")
     btn_add_admin = types.KeyboardButton("Admin qo'shish")
+    btn_delete_admin = types.KeyboardButton("Admin o'chirish")
     btn_orqaga = types.KeyboardButton("orqaga")
-    keyboard.row(btn_news, btn_admins, btn_add_admin)
+    keyboard.row(btn_news, btn_admins)
+    keyboard.row(btn_add_admin, btn_delete_admin)
     keyboard.row(btn_orqaga)
     return keyboard
 
