@@ -1,14 +1,14 @@
 # Python bazaviy rasmidan foydalanamiz
 FROM python:3.10-slim
 
-# Loyihaning ishlash katalogini aniqlash
+# Ish katalogini yaratamiz
 WORKDIR /app
 
-# Kutubxonalar ro‘yxatini konteynerga ko‘chirish
+# requirements.txt faylini nusxalash
 COPY requirements.txt .
 
 # Kutubxonalarni o‘rnatish
-RUN pip3 freeze > requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Botning asosiy faylini ko‘chirish
 COPY bot.py .
