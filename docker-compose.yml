@@ -6,7 +6,7 @@ services:
     container_name: telegram_postgres
     restart: always
     environment:
-      POSTGRES_DB: userids-postgres
+      POSTGRES_DB: useridspostgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 2UolD9i8wNoHBQm1obCwXXlWfQdqcfDe
     ports:
