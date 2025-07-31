@@ -12,6 +12,8 @@ class Employees_db:
             password=cfg.password
         )
         self.cursor = self.connect.cursor()
+        self.create_table()
+        print("table yaratildi")
 
     def create_table(self):
         self.cursor.execute(f"""

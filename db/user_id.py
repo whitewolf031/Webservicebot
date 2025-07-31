@@ -13,6 +13,7 @@ class UserIDsDB:
             password=cfg.password
         )
         self.cursor = self.connect.cursor()
+        self.create_table()
 
     def create_table(self):
         # Jadvalni yaratish
