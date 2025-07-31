@@ -1,17 +1,30 @@
-# Python bazaviy rasmidan foydalanamiz
-FROM python:3.10-slim
 
-# Ish katalogini yaratamiz
+FROM python:3.12-slim
+
 WORKDIR /app
 
-# requirements.txt faylini nusxalash
-COPY reqiurements.txt .
+# Sistem kutubxonalarni yangilaymiz va ffmpeg o‘rnatamiz
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ffmpeg \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-# Kutubxonalarni o‘rnatish
+# Python optimallashtirishlar
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Pip yangilanishi
+RUN pip install --upgrade pip
+
+# Kerakli Python kutubxonalar
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Botning asosiy faylini ko‘chirish
-COPY bot.py .
+# Loyihani nusxalash
+COPY . .
+
+# Django uchun port
+EXPOSE 8000
 
 # Botni ishga tushirish
-CMD ["python3 bot.py"]
+CMD ["sh", "-c", "python3 bot.py"]
