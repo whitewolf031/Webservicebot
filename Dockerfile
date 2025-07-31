@@ -5,7 +5,7 @@ FROM python:3.10-slim
 WORKDIR /app
 
 # requirements.txt faylini nusxalash
-COPY requirements.txt .
+COPY reqiurements.txt .
 
 # Kutubxonalarni o‘rnatish
 RUN pip install --no-cache-dir -r requirements.txt
